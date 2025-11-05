@@ -1,0 +1,5 @@
+../Libraries/Src/MY_FLASH.c:30:13:MY_FLASH_EraseSector	8	static
+../Libraries/Src/MY_FLASH.c:39:6:MY_FLASH_SetSectorAddrs	16	static
+../Libraries/Src/MY_FLASH.c:46:6:MY_FLASH_WriteN	64	static
+../Libraries/Src/MY_FLASH.c:86:6:MY_FLASH_ReadN	40	static
+../Libraries/Src/MY_FLASH.c:117:6:write_flash	1032	static

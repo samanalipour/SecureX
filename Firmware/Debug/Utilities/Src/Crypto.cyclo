@@ -1,0 +1,3 @@
+../Utilities/Src/Crypto.c:10:6:sha256	1
+../Utilities/Src/Crypto.c:19:6:AESCBC	1
+../Utilities/Src/Crypto.c:28:6:DecryptAES	1

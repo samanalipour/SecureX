@@ -1,0 +1,2 @@
+../Utilities/Src/RNG.c:10:6:Get_rng	40	static
+../Utilities/Src/RNG.c:22:6:HAL_RNG_ReadyDataCallback	16	static

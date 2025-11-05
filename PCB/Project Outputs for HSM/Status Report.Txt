@@ -1,0 +1,14 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [HSM.PrjPcb]
+   Generated File[pcb-RoundHoles-Plated.TXT]
+   Generated File[pcb-RoundHoles-NonPlated.TXT]
+   Generated File[pcb-SlotHoles-Plated.TXT]
+   Generated File[pcb.LDP]
+   Generated File[pcb.DRR]
+
+
+Files Generated   : 5
+Documents Printed : 0
+
+Finished Output Generation At 11:52:54 AM On 9/25/2024

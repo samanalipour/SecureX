@@ -1,0 +1,10 @@
+../Utilities/Src/Menu.c:9:6:Startup	16	static
+../Utilities/Src/Menu.c:68:6:MainMenu	24	static
+../Utilities/Src/Menu.c:149:6:TimeoutMenu	32	static
+../Utilities/Src/Menu.c:183:6:Enroll	104	static
+../Utilities/Src/Menu.c:320:6:LockDevice	88	static
+../Utilities/Src/Menu.c:451:6:EraseAlaram	16	static
+../Utilities/Src/Menu.c:467:6:EraseMem	1008	static
+../Utilities/Src/Menu.c:472:6:ResetFactory	24	static
+../Utilities/Src/Menu.c:557:6:OledAlarm	16	static
+../Utilities/Src/Menu.c:580:6:CheckPassword	96	static
