@@ -24,16 +24,30 @@ CMD_CRYPTO = 0x02     # expects 9-byte ID payload
 # ======================================
 # File-ID based purely on inode + device
 # ======================================
-def file_id_from_inode(path: str) -> bytes:
+# def file_id_from_sha256(path: str) -> bytes:
+#     """
+#     9-byte ID derived ONLY from (st_dev, st_ino).
+#     - Stable across rename.
+#     - Changes if copied (new inode) or moved across devices.
+#     """
+#     st = os.stat(path)
+#     packed = struct.pack("QQ", st.st_dev, st.st_ino)  # 16 bytes
+#     h = hashlib.sha256(packed).digest()
+#     return h[:9]
+
+def file_id_from_sha256(path: str) -> bytes:
     """
-    9-byte ID derived ONLY from (st_dev, st_ino).
-    - Stable across rename.
-    - Changes if copied (new inode) or moved across devices.
+    9-byte ID derived from SHA-256 of the file's *content*.
+    - Stable across rename, copy, move, partition.
+    - Changes only if file content changes.
     """
-    st = os.stat(path)
-    packed = struct.pack("QQ", st.st_dev, st.st_ino)  # 16 bytes
-    h = hashlib.sha256(packed).digest()
-    return h[:9]
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        # read in chunks to handle large files efficiently
+        for chunk in iter(lambda: f.read(4096), b""):
+            h.update(chunk)
+    digest = h.digest()
+    return digest[:9]   # truncate to 9 bytes for device protocol
 
 # ==================
 # USB/CDC primitives
@@ -299,7 +313,7 @@ if __name__ == "__main__":
             usage(); sys.exit(1)
         in_path = sys.argv[2]
         # Compute inode-based ID and fetch key
-        fid = file_id_from_inode(in_path)
+        fid = file_id_from_sha256(in_path)
         key = get_key_from_device_with_id(port, fid)
         # Encrypt with header (MAGIC|VER|ID|IV)
         aes_encrypt_file_with_header(in_path, key, fid)
